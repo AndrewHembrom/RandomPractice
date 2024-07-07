@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dom</title>
+</head>
+<body>
+    <script>
+        function findSum(){
+                const firstNum = document.getElementById("firstNum").value;
+                const secondNum = document.getElementById("secondNum").value;
+                const finalSum = document.getElementById("finalSum");
+                finalSum.innerHTML=`Sum is ${parseInt(firstNum)+parseInt(secondNum)}`;
+        }
+    </script>
+    <div>
+        <input type="number" id="firstNum" placeholder="First Number"></input>
+        <br></br>
+        <input type="number" id="secondNum" placeholder="Second Number"></input>
+        <br></br>
+        <button onclick="findSum()">Calculate Sum</button>
+        <br></br>
+        <div id="finalSum"></div>
+    </div>
+</body>
+</html>

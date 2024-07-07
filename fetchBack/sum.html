@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sum Page</title>
+    <style>
+      input::-webkit-outer-spin-button,
+      input::-webkit-inner-spin-button {
+         -webkit-appearance: none;
+      }
+   </style>
+</head>
+<body>
+    <script>
+        async function calcSum(){
+            const firstNum = document.getElementById("firstNum").value;
+            const secondNum = document.getElementById("secNum").value;
+            
+            const response = await fetch(`http://localhost:3000/sum?firstNum=${firstNum}&secNum=${secondNum}`);
+            const ans = await response.text();
+            document.getElementById("finalSum").innerHTML = `Sum is ${ans}`
+
+        }
+    </script>
+    <div>
+        <label for="firstNum">First Number:</label>
+        <input type="number" id="firstNum" placeholder="First Number"></input>
+        <br>
+        <label for="secNum">Second Number:</label>
+        <input type="number" id="secNum" placeholder="Second Number"></input>
+        <br>
+        <button onclick="calcSum()">Calculate Sum</button>
+        <div id="finalSum">
+        </div>
+        <a href="interest.html">To Calculate Interest</a>
+    </div>
+</body>
+</html>
