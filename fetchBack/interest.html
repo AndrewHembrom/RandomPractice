@@ -13,27 +13,36 @@
 </head>
 <body>
     <script>
+
+        var timeout = null;
+        function debounceCalcInt(){
+            clearTimeout(timeout);
+            timeout = setTimeout(function(){
+                calcInt();
+            },100)
+        }
+
         async function calcInt(){
             const p = document.getElementById("principal").value;
             const r = document.getElementById("rate").value;
             const t = document.getElementById("time").value;
 
             const response = await fetch(`http://localhost:3000/interest?principal=${p}&rate=${r}&time=${t}`);
-            const ans = await response.text();
-            document.getElementById("finalInt").innerHTML = `The Interest is ${ans}`;
+            const ans = await response.json();
+            console.log(ans.interest)
+            document.getElementById("finalInt").innerHTML = `Total = ${ans.total} | Interest = ${ans.interest}`;
         }
     </script>
     <div>
         <label for="principal">Principal Amt:</label>
-        <input type="number" id="principal" placeholder="Principal Amt"></input>
+        <input oninput="debounceCalcInt()" type="number" id="principal" placeholder="Principal Amt" value="1"></input>
         <br>
         <label for="rate">Rate:</label>
-        <input type="number" id="rate" placeholder="Rate"></input>
+        <input oninput="debounceCalcInt()" type="number" id="rate" placeholder="Rate" value="1"></input>
         <br>
         <label for="time">Time (Years):</label>
-        <input type="number" id="time" placeholder="Time"></input>
+        <input oninput="debounceCalcInt()" type="number" id="time" placeholder="Time" value="1"></input>
         <br>
-        <button onclick="calcInt()">Calculate Interest</button>
         <div id="finalInt"></div>
         <a href="sum.html">To Calculate Sum</a>
     </div>
