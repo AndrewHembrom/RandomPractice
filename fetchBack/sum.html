@@ -13,6 +13,14 @@
 </head>
 <body>
     <script>
+        const timeout = null;
+        function debounceCalcSum(){
+            clearTimeout(timeout);
+            timeout = setTimeout(function(){
+                calcSum();
+            },100)
+        }
+
         async function calcSum(){
             const firstNum = document.getElementById("firstNum").value;
             const secondNum = document.getElementById("secNum").value;
@@ -25,12 +33,11 @@
     </script>
     <div>
         <label for="firstNum">First Number:</label>
-        <input type="number" id="firstNum" placeholder="First Number"></input>
+        <input oninput="debounceCalcSum()" type="number" id="firstNum" placeholder="First Number" value="0"></input>
         <br>
         <label for="secNum">Second Number:</label>
-        <input type="number" id="secNum" placeholder="Second Number"></input>
+        <input oninput="debounceCalcSum()" type="number" id="secNum" placeholder="Second Number" value="0"></input>
         <br>
-        <button onclick="calcSum()">Calculate Sum</button>
         <div id="finalSum">
         </div>
         <a href="interest.html">To Calculate Interest</a>
