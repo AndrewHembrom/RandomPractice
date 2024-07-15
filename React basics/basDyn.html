@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic Counter</title>
+</head>
+<body>
+    <script>
+        function changeCnt() {
+            const countBtn = document.getElementById("btn");
+            const words = countBtn.innerHTML.split(" ");
+            const newCount = parseInt(words[1]) + 1 ;
+            countBtn.innerHTML = `Counter ${newCount}`;
+        }
+    </script>
+
+    <div>
+        <button onclick="changeCnt()" id="btn">Counter 0</button>
+    </div>
+</body>
+</html>
