@@ -1,7 +1,18 @@
 import { useState } from 'react'
 import './App.css'
 
+//Lookup react memo for an alternative to this solution
+
 function App() {
+  return (
+    <>
+      <HeaderWithButton/>
+      <Header title="Number"></Header>
+      </>
+  )
+}
+
+function HeaderWithButton() { 
   const [title, setTitle] = useState("My name is Andrew");
 
   function updateTitle() { 
@@ -9,14 +20,13 @@ function App() {
   }
 
   return (
-    <>
-      <button onClick={updateTitle}>Change the Title</button>
-      <Header title={ title }></Header>
-        <Header title="Number"></Header>
-      </>
+    <div>
+      <button onClick={updateTitle}>Update the Title</button>
+      <Header title={title}></Header>
+    </div>
   )
-}
 
+}
 
 function Header({ title }) { 
   return <div>
