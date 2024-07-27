@@ -8,6 +8,20 @@ function App() {
 
   const [todos, setTodos] = useState([]);
 
+  /*
+
+  useEffect without rerendering
+
+  useEffect(()=> {
+    fetch(url)
+      .then( async (res) => {
+        const json = await res.json();
+        setTodos(json.todos);
+      })
+  }, [])
+
+  */
+
   useEffect(() => {
     const fetchData = async () => {
       try {
