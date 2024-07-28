@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react'
+import axios from "axios"
 
 // https://gist.github.com/hkirat/e10da900663a6f7a155c8505daae894f
 
@@ -8,41 +9,36 @@ function App() {
 
   const [todos, setTodos] = useState([]);
 
-  /*
-
-  useEffect without rerendering
 
   useEffect(()=> {
-    fetch(url)
+    axios.get(url)
       .then( async (res) => {
-        const json = await res.json();
-        setTodos(json.todos);
+        setTodos(res.data.todos);
       })
   }, [])
 
-  */
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const res = await fetch(url);
-        const json = await res.json();
-        setTodos(json.todos);
-      } catch (error) {
-        res.status(500).json({
-          msg: "Error fetching data",
-          error: error.message
-        })
-        console.error('Error fetching data: ', error);
-      }
-    }
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const res = await fetch(url);
+  //       const json = await res.json();
+  //       setTodos(json.todos);
+  //     } catch (error) {
+  //       res.status(500).json({
+  //         msg: "Error fetching data",
+  //         error: error.message
+  //       })
+  //       console.error('Error fetching data: ', error);
+  //     }
+  //   }
 
-    fetchData();
+  //   fetchData();
 
-    const interval = setInterval(fetchData, 5000);
+  //   const interval = setInterval(fetchData, 5000);
 
-    return () => clearInterval(interval);
-  }, [])
+  //   return () => clearInterval(interval);
+  // }, [])
 
   return (
       <div>
