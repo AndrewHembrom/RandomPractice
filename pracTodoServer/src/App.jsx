@@ -3,7 +3,8 @@ import axios from "axios"
 
 // https://gist.github.com/hkirat/e10da900663a6f7a155c8505daae894f
 
-const url = "https://sum-server.100xdevs.com/todos";
+const todosURL = "https://sum-server.100xdevs.com/todos";
+const idTodoURL = "https://sum-server.100xdevs.com/todo?id=";
 
 function App() {
 
@@ -11,8 +12,8 @@ function App() {
 
 
   useEffect(()=> {
-    axios.get(url)
-      .then( async (res) => {
+    axios.get(todosURL)
+      .then((res) => {
         setTodos(res.data.todos);
       })
   }, [])
@@ -40,23 +41,39 @@ function App() {
   //   return () => clearInterval(interval);
   // }, [])
 
+  const [Id, setId] = useState(1)
+
   return (
-      <div>
-      {todos.map(({ id, title, description }) => <ShowTodos key={ id } title={title} description={description} />)}
+    <div>
+      <button onClick={function () { setId(1) }}>1</button>
+      <button onClick={function () { setId(2) }}>2</button>
+      <button onClick={function () { setId(3) }}>3</button>
+      <button onClick={function () { setId(4) }}>4</button>
+      <Todo id={Id}/>
+      {/* {todos.map(({ id, title, description }) => <ShowTodos key={ id } title={title} description={description} />)} */}
       </div>
   )
 }
-function ShowTodos({ title,description }) {
+
+function Todo({ id }) {
+  
+  const [todoId, setTodoId] = useState({});
+
+  useEffect(() => { 
+    axios.get(idTodoURL + id)
+      .then(function (res) { 
+        setTodoId(res.data.todo);
+      })
+  },[id])
+
   return (
     <div>
-      <h2>
-        {title}
-      </h2>
-      <h5>
-        {description}
-      </h5>
+      Id: {id}
+      <h1>{ todoId.title }</h1>
+      <h4>{ todoId.description }</h4>
     </div>
   )
 }
+
 
 export default App
