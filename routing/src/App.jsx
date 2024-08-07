@@ -1,8 +1,8 @@
-import { useState } from 'react'
+import { useState , lazy} from 'react'
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Dashboard from './components/Dashboard.jsx'
-import Landing from './components/Landing.jsx'
+const Dashboard = lazy(() => import('./components/Dashboard.jsx'))
+const Landing = lazy(() => import('./components/Landing.jsx'))
 import Header from './components/Header.jsx'
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
     <BrowserRouter>
       <Header/>
       <Routes>
-        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/dashboard' element={<Dashboard/>} />
         <Route path='/' element={ <Landing/>} />
       </Routes>
     </BrowserRouter>
