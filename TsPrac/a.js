@@ -2,7 +2,17 @@
 // TypeScript adds type safety to JavaScript code
 // let x: number = 121;
 // console.log(x);
-function greet(firstName) {
-    console.log(`Hello ${firstName}`);
+;
+function isLegal(user) {
+    if (user.age > 18) {
+        console.log(`${user.firstName} ${user.lastName} is eligible!`);
+    }
+    else {
+        console.log(`${user.firstName} ${user.lastName} is not eligible!`);
+    }
 }
-greet("Andrew");
+isLegal({
+    firstName: "Andrew",
+    lastName: "Hembrom",
+    age: 12
+});

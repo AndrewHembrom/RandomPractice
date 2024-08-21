@@ -5,8 +5,28 @@
 
 
 // Types - number, string, boolean, null, undefined, any
-function greet(firstName: string) { 
-    console.log(`Hello ${firstName}`);
+// function greet(firstName: string) { 
+//     console.log(`Hello ${firstName}`);
+// }
+
+// greet("Andrew");
+
+interface User {
+    firstName: string;
+    lastName: string;
+    age: number;
+};
+
+function isLegal(user: User) { 
+    if (user.age > 18) {
+        console.log(`${user.firstName} ${user.lastName} is eligible!`);
+    } else { 
+        console.log(`${user.firstName} ${user.lastName} is not eligible!`);
+    }
 }
 
-greet("Andrew");
+isLegal({
+    firstName: "Andrew",
+    lastName: "Hembrom",
+    age: 12
+})
