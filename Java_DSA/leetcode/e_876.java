@@ -1,4 +1,3 @@
-package leetcode;
 import java.util.Scanner;
 
 public class e_876 {
